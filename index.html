@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Calculadora de Investimentos</title>
+  </head>
+  <body class="grid grid-cols-3 grid-rows-2 h-dvh">
+    <aside
+      class="bg-cyan-500 row-span-2 rounded-r-lg flex flex-col justify-between py-5"
+    >
+      <div>
+        <h1 class="text-2xl font-bold px-5 py-2">Petrópolis Invest</h1>
+        <h2 class="text-xl font-bold px-5">Calculadora de Investimentos</h2>
+      </div>
+      <form class="w-full px-5">
+        <div class="flex w-full flex-col my-8">
+          <label for="investment-clas-return" class="font-bold text-gray-800">
+            Classe de investimento</label
+          >
+          <div class="flex">
+            <select
+              id="investment-clas-return"
+              class="w-9/12 rounded-r-lg border-l-4 border-s-blue-500 hover:bg-blue-200 hover:text-slate-0"
+            >
+              <option value="investment-clas">Renda Fixa</option>
+              <option value="investment-class">Renda Variável</option>
+              <option value="investment-class">Fundos de Investimentos</option>
+              <option value="investment-class">Mercardo Invernacional</option>
+              <option value="investment-class">Outros</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex w-full flex-col my-2">
+          <label for="starting-amount" class="font-bold text-gray-800">
+            Investimento inicial</label
+          >
+          <div class="flex">
+            <input
+              value="R$"
+              class="w-1/12 text-center rounded-l-lg"
+              type="text"
+              disabled
+            />
+            <input
+              type="text"
+              class="w-2/6 rounded-r-lg px-2"
+              placeholder="0.00"
+              id="starting-amount"
+            />
+          </div>
+        </div>
+        <div class="flex w-full flex-col my-2">
+          <label for="additional-contribution" class="font-bold text-gray-800">
+            Aportes adicionais</label
+          >
+          <div class="flex">
+            <input
+              value="R$"
+              class="w-1/12 text-center rounded-l-lg"
+              type="text"
+              disabled
+            />
+            <input
+              type="text"
+              class="w-2/6 rounded-r-lg px-2"
+              placeholder="0.00"
+              id="additional-contribution"
+            />
+          </div>
+        </div>
+        <div class="flex w-full flex-col my-2">
+          <label for="time-amount" class="font-bold text-gray-800">
+            Prazo de Investimento</label
+          >
+          <div class="flex">
+            <input
+              value="->"
+              class="w-1/12 text-center rounded-l-lg"
+              type="text"
+              disabled
+            />
+            <input
+              type="text"
+              class="w-2/6 px-2"
+              placeholder="0"
+              id="time-amount"
+            />
+            <select
+              id="time-amount-period"
+              class="w-2/6 text-center rounded-r-lg border-l-4 border-s-blue-500 hover:bg-blue-200 hover:text-slate-0"
+            >
+              <option value="monthly">Mensal</option>
+              <option value="yearly">Anual</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex w-full flex-col my-2">
+          <label for="return-rate" class="font-bold text-gray-800">
+            Rentabilidade</label
+          >
+          <div class="flex">
+            <input
+              value="%"
+              class="w-1/12 text-center rounded-l-lg"
+              type="text"
+              disabled
+            />
+            <input
+              type="text"
+              class="w-2/6 px-2"
+              placeholder="0"
+              id="return-rate"
+            />
+            <select
+              id="evaluation-period"
+              class="w-2/6 text-center rounded-r-lg border-l-4 border-s-blue-500 hover:bg-blue-200 hover:text-slate-0"
+            >
+              <option value="monthly">Mensal</option>
+              <option value="yearly">Anual</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex w-full flex-col my-2">
+          <label for="tax-rate" class="font-bold text-gray-800">
+            Imposto sobre o lucro obtido no período selecionado</label
+          >
+          <div class="flex">
+            <input
+              value="%"
+              class="w-1/12 text-center rounded-l-lg"
+              type="text"
+              disabled
+            />
+            <input
+              type="text"
+              class="w-2/6 rounded-r-lg px-2"
+              placeholder="0"
+              id="tax-rate"
+            />
+          </div>
+        </div>
+      </form>
+      <div class="flex justify-around my-5 px-8 gap-5">
+        <button
+          class="w-1/2 rounded-lg bg-blue-800 font-bold text-slate-200 hover:bg-blue-900"
+        >
+          Calcular
+        </button>
+        <button
+          class="w-1/2 rounded-lg font-bold text-slate-200 hover:bg-blue-900"
+        >
+          Limpar
+        </button>
+      </div>
+    </aside>
+    <main>
+      <p>texte</p>
+    </main>
+  </body>
+</html>
