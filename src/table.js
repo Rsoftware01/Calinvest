@@ -18,7 +18,7 @@ export const createTable = (columnsArray, dataArray, tableId) => {
   }
 
   createTableHeader(tableElement, columnsArray);
-  createTableBody(tableReference, dataArray, columnsArray);
+  createTableBody(tableElement, dataArray, columnsArray);
 };
 
 function createTableHeader(tableReference, columnsArray) {
@@ -31,6 +31,9 @@ function createTableHeader(tableReference, columnsArray) {
     tableReference.querySelector("thead") ??
     createTheadReference(tableReference);
   const headerRow = document.createElement("tr");
+  ["bg-blue-900", "text-slate-200", "sticky", "top-0"].forEach((cssClass) =>
+    headerRow.classList.add(cssClass)
+  );
   for (const tableColumnObject of columnsArray) {
     const headerElement = /*html*/ `<th class = " text-center">${tableColumnObject.columnLabel}</th>`;
     headerRow.innerHTML += headerElement;
@@ -50,11 +53,14 @@ function createTableBody(tableReference, tableItems, columnsArray) {
 
   for (const [itemIndex, tableItem] of tableItems.entries()) {
     const tableRow = document.createElement("tr");
-
+    if (itemIndex % 2 !== 0) {
+      tableRow.classList.add("bg-blue-200");
+    }
     for (const tableColumn of columnsArray) {
-      tableRow.innerHTML += /*html*/ `<td class = " text-center">${
+      const formatFn = tableColumn.format ?? ((info) => info);
+      tableRow.innerHTML += /*html*/ `<td class = " text-center">${formatFn(
         tableItem[tableColumn.accessor]
-      }</td>`;
+      )}</td>`;
     }
     tableBodyReference.appendChild(tableRow);
   }
