@@ -2,7 +2,7 @@ function convertToMontlyreturnRate(earlyReturnRate) {
   return earlyReturnRate ** (1 / 12);
 }
 
-function generateReturnsArray(
+export function generateReturnsArray(
   startingAmount = 0,
   timeHorizon = 0,
   timePeriod = "monthly",
@@ -53,6 +53,5 @@ function generateReturnsArray(
       totalAmount,
     });
   }
+  return returnsArray;
 }
-
-return returnsArray;

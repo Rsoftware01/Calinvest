@@ -14,20 +14,20 @@
         <h1 class="text-2xl font-bold px-5 py-2">Petrópolis Invest</h1>
         <h2 class="text-xl font-bold px-5">Calculadora de Investimentos</h2>
       </div>
-      <form class="w-full px-5">
+      <form class="w-full px-5" id="investment-form">
         <div class="flex w-full flex-col my-8">
-          <label for="investment-clas-return" class="font-bold text-gray-800">
+          <label for="investment-clas" class="font-bold text-gray-800">
             Classe de investimento</label
           >
           <div class="flex">
             <select
-              id="investment-clas-return"
+              id="investment-clas"
               class="w-9/12 rounded-r-lg border-l-4 border-s-blue-500 hover:bg-blue-200 hover:text-slate-0"
             >
               <option value="investment-clas">Renda Fixa</option>
               <option value="investment-class">Renda Variável</option>
               <option value="investment-class">Fundos de Investimentos</option>
-              <option value="investment-class">Mercardo Invernacional</option>
+              <option value="investment-class">Mercardo Internacional</option>
               <option value="investment-class">Outros</option>
             </select>
           </div>
@@ -48,6 +48,7 @@
               class="w-2/6 rounded-r-lg px-2"
               placeholder="0.00"
               id="starting-amount"
+              required
             />
           </div>
         </div>
@@ -86,6 +87,7 @@
               class="w-2/6 px-2"
               placeholder="0"
               id="time-amount"
+              required
             />
             <select
               id="time-amount-period"
@@ -112,6 +114,7 @@
               class="w-2/6 px-2"
               placeholder="0"
               id="return-rate"
+              required
             />
             <select
               id="evaluation-period"
@@ -138,12 +141,15 @@
               class="w-2/6 rounded-r-lg px-2"
               placeholder="0"
               id="tax-rate"
+              required
             />
           </div>
         </div>
       </form>
       <div class="flex justify-around my-5 px-8 gap-5">
         <button
+          id="calculate-results"
+          form="investment-form"
           class="w-1/2 rounded-lg bg-blue-800 font-bold text-slate-200 hover:bg-blue-900"
         >
           Calcular
@@ -158,5 +164,6 @@
     <main>
       <p>texte</p>
     </main>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
