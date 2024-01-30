@@ -49,6 +49,10 @@ function clearForm() {
     errorInputContainer.parentElement.querySelector("p").remove();
   }
 }
+<<<<<<< HEAD
+=======
+form;
+>>>>>>> main
 
 function validateInput(evt) {
   if (evt.target.value === "") {
