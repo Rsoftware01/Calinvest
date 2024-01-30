@@ -9,6 +9,14 @@ const clearFormButton = document.getElementById("clear-form");
 let doughnutChartReference = {};
 let progressionChartReference = {};
 
+const columnsArray = [
+  { columnLabel: "Total investido", accessor: "investedAmount" },
+  { columnLabel: "Rendimento mensal", accessor: "interestReturns" },
+  { columnLabel: "Rendimento total", accessor: "totalInterestReturns" },
+  { columnLabel: "Mês", accessor: "month" },
+  { columnLabel: "Quantia total", accessor: "totalAmount" },
+];
+
 function formatCurrency(value) {
   return value.toFixed(2);
 }
@@ -49,7 +57,7 @@ function renderProgression(evt) {
   const finalInvestmentObject = returnsArray[returnsArray.length - 1];
   // console.log(returnsArray);
 
-  doughnutChartReference = new Chart(finalMoneyChart, {
+  /*doughnutChartReference = new Chart(finalMoneyChart, {
     type: "doughnut",
     data: {
       labels: ["Total Investido", "Rendimento", "Imposto"],
@@ -107,7 +115,7 @@ function renderProgression(evt) {
         },
       },
     },
-  });
+  });*/
 }
 
 function isObjectEmpty(obj) {
@@ -175,5 +183,5 @@ for (const formElement of form)
     formElement.addEventListener("blur", validateInput);
   }
 
-//form.addEventListener("submit", renderProgression);
+form.addEventListener("submit", renderProgression);
 clearFormButton.addEventListener("click", clearForm);
