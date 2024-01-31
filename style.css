@@ -24,20 +24,6 @@
   font-size: 1.25rem; /* 20px */
 }
 
-.rounded-lg {
-  border-radius: 0.5rem;
-}
-
-.rounded-r-lg {
-  border-top-right-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-
-.flex {
-  display: flex;
-  flex-direction: column;
-}
-
 .w-full {
   width: 100%;
 }
