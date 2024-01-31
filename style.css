@@ -8,3 +8,116 @@
     @apply rounded-lg;
   }
 }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Estrutura de 3 colunas */
+  grid-template-rows: auto;
+  height: 100vh;
+  gap: 10px; /* Espaçamento opcional entre colunas */
+}
+
+.text-2xl {
+  font-size: 1.5rem; /* 24px */
+}
+
+.text-xl {
+  font-size: 1.25rem; /* 20px */
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-r-lg {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.px-5,
+.py-5 {
+  padding: 1.25rem;
+}
+
+/* Responsividade para telas menores */
+@media screen and (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr; /* Ajuste para 1 coluna */
+  }
+
+  .text-2xl {
+    font-size: 1.25rem; /* Ajuste no tamanho da fonte */
+  }
+
+  .text-xl {
+    font-size: 1rem; /* Ajuste no tamanho da fonte */
+  }
+
+  .px-5,
+  .py-5 {
+    padding: 1rem; /* Ajuste no padding para telas menores */
+  }
+}
+
+/* Responsividade para telas muito pequenas (mínimo de 320 pixels) */
+@media screen and (max-width: 320px) {
+  .grid {
+    grid-template-columns: 1fr; /* Ajuste para 1 coluna */
+  }
+
+  .text-2xl {
+    font-size: 1rem; /* Ajuste adicional para o tamanho da fonte */
+  }
+
+  .text-xl {
+    font-size: 0.875rem; /* Ajuste adicional para o tamanho da fonte */
+  }
+
+  .px-5,
+  .py-5 {
+    padding: 0.75rem; /* Ajuste adicional no padding para telas muito pequenas */
+  }
+}
+/* Estilos gerais */
+.input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem; /* Espaço entre o ícone e o input */
+}
+
+.input-icon {
+  flex-shrink: 0; /* Evita que o ícone encolha */
+}
+
+.input-field {
+  flex-grow: 1; /* Permite que o input cresça para preencher o espaço disponível */
+  min-width: 0; /* Impede o input de se estender além do seu contêiner */
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  /* Ajustes para telas menores */
+  .input-group {
+    gap: 0.25rem;
+  }
+
+  .input-field {
+    font-size: 0.875rem; /* Diminui o tamanho da fonte nos inputs */
+  }
+}
+
+@media screen and (max-width: 320px) {
+  /* Ajustes adicionais para telas muito pequenas */
+  .input-field {
+    font-size: 0.75rem; /* Diminui ainda mais o tamanho da fonte nos inputs */
+  }
+}
