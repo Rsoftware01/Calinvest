@@ -3,6 +3,10 @@ import { generateReturnsArray } from "./src/investmentGoals";
 import { Chart } from "chart.js/auto";
 import { createTable } from "./src/table";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import * as XLSX from "xlsx";
+
 const finalMoneyChart = document.getElementById("final-money-distribution");
 const progressionChart = document.getElementById("progression");
 const form = document.getElementById("investment-form");
@@ -234,3 +238,98 @@ previousButton.addEventListener("click", () => {
 
 form.addEventListener("submit", renderProgression);
 clearFormButton.addEventListener("click", clearForm);
+
+// Adicione esta função para gerar o arquivo
+function generateFile() {
+  const fileType = prompt(
+    "Escolha o tipo de arquivo (PDF ou Excel):"
+  ).toLowerCase();
+
+  if (fileType === "pdf") {
+    generatePDF();
+  } else if (fileType === "excel") {
+    generateExcel();
+  } else {
+    alert("Tipo de arquivo não suportado. Por favor, escolha PDF ou Excel.");
+  }
+}
+
+function generatePDF() {
+  const pdf = new jsPDF();
+  pdf.text("Relatório de Investimentos", 20, 10);
+
+  // Adiciona gráfico de rosca (doughnut)
+  const doughnutDataURL = finalMoneyChart.toDataURL("image/png", 1.0);
+  pdf.addImage(doughnutDataURL, "PNG", 20, 30, 80, 60);
+
+  // Adiciona gráfico de barras (progression)
+  const progressionDataURL = progressionChart.toDataURL("image/png", 1.0);
+  pdf.addImage(progressionDataURL, "PNG", 20, 110, 120, 60); // Ajuste a largura para 120
+
+  // Adiciona a tabela
+  pdf.autoTable({ html: "#results-table", startY: 190 });
+
+  // Salva ou exibe o arquivo
+  pdf.save("relatorio_investimentos.pdf");
+}
+
+function generateExcel() {
+  const wb = XLSX.utils.book_new();
+
+  // Adiciona a tabela
+  const ws = XLSX.utils.table_to_sheet(
+    document.getElementById("results-table")
+  );
+  XLSX.utils.book_append_sheet(wb, ws, "Investimentos");
+
+  // Adiciona gráfico de rosca (doughnut)
+  const doughnutDataURL = finalMoneyChart.toDataURL("image/png");
+  const doughnutBlob = dataURLtoBlob(doughnutDataURL);
+  const doughnutObject = {
+    "!type": "image",
+    "!data": doughnutBlob,
+    "!mime": "image/png",
+    "!link": "Doughnut Chart",
+  };
+  XLSX.utils.book_append_sheet(
+    wb,
+    { "!objects": [doughnutObject] },
+    "Gráfico de rosca"
+  );
+
+  // Adiciona gráfico de barras (progression)
+  const progressionDataURL = progressionChart.toDataURL("image/png");
+  const progressionBlob = dataURLtoBlob(progressionDataURL);
+  const progressionObject = {
+    "!type": "image",
+    "!data": progressionBlob,
+    "!mime": "image/png",
+    "!link": "Progression Chart",
+  };
+  XLSX.utils.book_append_sheet(
+    wb,
+    { "!objects": [progressionObject] },
+    "Gráfico de barras"
+  );
+
+  // Salva ou exibe o arquivo
+  XLSX.writeFile(wb, "Relatorio_investimentos.xlsx");
+}
+
+// Função auxiliar para converter Data URL para Blob
+function dataURLtoBlob(dataURL) {
+  const arr = dataURL.split(",");
+  const mime = arr[0].match(/:(.*?);/)[1];
+  const bstr = atob(arr[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) {
+    u8arr[n] = bstr.charCodeAt(n);
+  }
+  return new Blob([u8arr], { type: mime });
+}
+
+// Adicione este ouvinte de evento para o botão "Gerar arquivo"
+document
+  .getElementById("generate-file")
+  .addEventListener("click", generateFile);
