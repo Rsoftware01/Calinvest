@@ -48,6 +48,13 @@ function renderProgression(evt) {
     return;
   }
 
+  const tableElement = document.getElementById("results-table");
+  const tableBody = tableElement.querySelector("tbody");
+  const tableHead = tableElement.querySelector("thead");
+
+  tableBody.innerHTML = "";
+  tableHead.innerHTML = "";
+
   resetCharts();
 
   const startingAmount = Number(
@@ -160,6 +167,13 @@ function clearForm() {
   form["time-amount"].value = "";
   form["return-rate"].value = "";
   form["tax-rate"].value = "";
+
+  const tableElement = document.getElementById("results-table");
+  const tableBody = tableElement.querySelector("tbody");
+  const tableHead = tableElement.querySelector("thead");
+
+  tableBody.innerHTML = "";
+  tableHead.innerHTML = "";
 
   resetCharts();
 
