@@ -2,6 +2,7 @@
 import { generateReturnsArray } from "./src/investmentGoals";
 import { Chart } from "chart.js/auto";
 import { createTable } from "./src/table";
+import { createPopup } from "./src/popup";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -149,6 +150,10 @@ function renderProgression(evt) {
     },
   });
   createTable(columnsArray, returnsArray, "results-table");
+
+  // Chama a função para criar o popup
+  console.log("Chamando createPopup");
+  createPopup();
 }
 
 function isObjectEmpty(obj) {
