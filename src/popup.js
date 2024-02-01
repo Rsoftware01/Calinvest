@@ -1,5 +1,7 @@
 // popup.js
-// popup.js
+
+const popupOverlay = document.createElement("div");
+popupOverlay.id = "deletpopup"; // Adicione um ID aqui
 
 export function createPopup() {
   if (document.readyState === "loading") {
@@ -49,14 +51,55 @@ export function createPopup() {
         const email = document.getElementById("email").value;
         const phone = document.getElementById("phone").value;
 
-        if (fullName && email && phone) {
-          console.log("Dados enviados:", { fullName, email, phone });
-          // Aqui você pode adicionar a lógica para enviar esses dados para um servidor
-          // Por agora, vamos apenas fechar o popup
-          document.body.removeChild(popupOverlay);
-        } else {
-          alert("Por favor, preencha todos os campos.");
-        }
+        fetch("/send-email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ fullName, email, phone }),
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            console.log("Success:", data);
+            // Mostrar mensagem de sucesso
+            showSuccessMessage();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            // Aqui você pode mostrar uma mensagem de erro, se necessário
+          });
       });
+  }
+
+  function showSuccessMessage() {
+    const message = document.createElement("div");
+    message.textContent = "Dados enviados com sucesso!";
+    message.style.backgroundColor = "#4CAF50"; // Cor de fundo verde
+    message.style.color = "white"; // Texto branco
+    message.style.padding = "10px";
+    message.style.marginTop = "10px";
+    message.style.textAlign = "center";
+    message.style.borderRadius = "5px";
+
+    const closeButton = document.createElement("button");
+    closeButton.textContent = "Fechar";
+    closeButton.style.marginTop = "10px";
+    closeButton.style.cursor = "pointer";
+    closeButton.addEventListener("click", closePopup);
+
+    const form = document.getElementById("userInfoForm");
+    form.parentNode.insertBefore(message, form.nextSibling);
+    form.parentNode.insertBefore(closeButton, form.nextSibling);
+
+    // Remover mensagem e botão após alguns segundos
+    setTimeout(() => {
+      message.parentNode.removeChild(message);
+      closeButton.parentNode.removeChild(closeButton);
+    }, 5000);
+  }
+
+  function closePopup() {
+    const popupOverlay = document.getElementById("deletpopup");
+    document.body.removeChild(popupOverlay);
   }
 }

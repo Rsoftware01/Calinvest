@@ -2,7 +2,7 @@
 import { generateReturnsArray } from "./src/investmentGoals";
 import { Chart } from "chart.js/auto";
 import { createTable } from "./src/table";
-import { createPopup } from "./src/popup";
+//import { createPopup } from "./src/popup";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable";
