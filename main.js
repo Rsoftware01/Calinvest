@@ -241,16 +241,26 @@ clearFormButton.addEventListener("click", clearForm);
 
 // Adicione esta função para gerar o arquivo
 function generateFile() {
-  const fileType = prompt(
-    "Escolha o tipo de arquivo (PDF ou Excel):"
-  ).toLowerCase();
+  let fileType = "";
 
-  if (fileType === "pdf") {
-    generatePDF();
-  } else if (fileType === "excel") {
-    generateExcel();
-  } else {
-    alert("Tipo de arquivo não suportado. Por favor, escolha PDF ou Excel.");
+  while (!fileType) {
+    const input = prompt("Escolha o tipo de arquivo (PDF ou Excel):");
+
+    // Se o usuário pressionar Cancelar no prompt, `input` será `null`
+    if (input === null) break;
+
+    fileType = input.toLowerCase();
+
+    if (fileType === "pdf") {
+      generatePDF();
+      break; // Sai do loop após a operação bem-sucedida
+    } else if (fileType === "excel") {
+      generateExcel();
+      break; // Sai do loop após a operação bem-sucedida
+    } else {
+      alert("Formato não disponível. Por favor, escolha PDF ou Excel.");
+      fileType = ""; // Reseta fileType para continuar no loop
+    }
   }
 }
 
